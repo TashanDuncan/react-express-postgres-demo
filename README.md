@@ -3,6 +3,7 @@
     brew update
     brew install postgresql@14
     brew services start postgresql@14
+
     brew services stop postgresql@14
 
 ** Setup database **
@@ -34,3 +35,6 @@ http://localhost:3000/
 ** API **
 
 http://localhost:3001/
+
+Use pgAdmin client https://www.pgadmin.org
+
