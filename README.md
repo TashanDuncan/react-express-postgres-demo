@@ -22,6 +22,11 @@ Go to terminal:
 
     \i server/sql/setup.sql
 
+Running: 
+
+    yarn install
+    yarn start
+
 ** Front end **
 
 http://localhost:3000/
