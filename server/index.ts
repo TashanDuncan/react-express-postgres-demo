@@ -40,6 +40,18 @@ console.log(req)
   })
 });
 
+app.delete('/remove', (req, res) => {
+  console.log(req.body)
+  let { id } = req.body;
+  pool.query(`DELETE FROM demo.stock WHERE stock_id ='${id}';`, (error, results) => {
+    if (error) {
+      throw error
+    }
+    res.status(200).json(results.rows)
+  })
+
+})
+
 app.listen(3001, () => {
   console.log('API Server listening on http://localhost:3001');
 });
