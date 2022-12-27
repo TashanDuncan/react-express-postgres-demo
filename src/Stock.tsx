@@ -1,4 +1,5 @@
 import React, { Component, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 interface Stock {
     stock_id: string;
@@ -38,7 +39,24 @@ export const DisplayStock = () => {
             {item.name} {item.description}
           </li>
         ))}
+         <Link to="/add">Add Stock</Link>
       </ul>
     );
   }
 };
+
+export const AddStock = () => {
+  return (
+    
+<>
+<Link to="/">Back</Link>
+    <form action="http://localhost:3001/add" method="post">
+      <label htmlFor="name">Name:</label>
+      <input id="name" name="name" type="text"></input>
+      <label htmlFor="description">Description:</label>
+      <textarea id="description" name="description"rows={5} cols={33}></textarea>
+      <button type="submit">Submit Stock</button>
+    </form>
+    </>
+  )
+}
