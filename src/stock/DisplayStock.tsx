@@ -7,6 +7,8 @@ interface Stock {
     description: string;
 }
 
+
+
 export const DisplayStock = () => {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const [items, setItems] = useState<Stock[]>([]);
@@ -44,19 +46,3 @@ export const DisplayStock = () => {
     );
   }
 };
-
-export const AddStock = () => {
-  return (
-    
-<>
-<Link to="/">Back</Link>
-    <form action="http://localhost:3001/add" method="post">
-      <label htmlFor="name">Name:</label>
-      <input id="name" name="name" type="text"></input>
-      <label htmlFor="description">Description:</label>
-      <textarea id="description" name="description"rows={5} cols={33}></textarea>
-      <button type="submit">Submit Stock</button>
-    </form>
-    </>
-  )
-}

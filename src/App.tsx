@@ -1,5 +1,6 @@
 import { Link, Outlet, Route, Routes } from 'react-router-dom';
-import { AddStock, DisplayStock } from './Stock';
+import { AddStock } from './stock/AddStock';
+import { DisplayStock } from './stock/DisplayStock';
 import './styles.css';
 
 export default function App() {

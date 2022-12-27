@@ -1,13 +1,12 @@
 import express from 'express';
 import * as pg from 'pg'
 import cors from 'cors';
-import bodyParser from 'body-parser';
 const { Pool } = pg.default
 
 const app = express();
 app.use(cors())
 app.use(express.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.urlencoded({extended: true}));
 
 const pool = new Pool({
   user: 'Tay.Duncan',
@@ -32,7 +31,7 @@ app.get('/stock', (req, res) => {
 
 app.post('/add', (req, res) => {
   let { name, description } = req.body;
-console.log({ name, description })
+console.log(req)
   pool.query(`INSERT INTO demo.stock (name, description) VALUES ('${name}', '${description}');`, (error, results) => {
     if (error) {
       throw error
