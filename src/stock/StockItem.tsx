@@ -1,9 +1,19 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
+const Button = styled.button`
+  cursor: pointer;
+  margin: 0 5px;
+`;
 export const StockItem = (props) => {
   const [isActive, setIsActive] = useState<boolean>(true);
-  const description = props.info.description.length > 25 ? `${props.info.description.substring(0,25)}...` : props.info.description
+  const description =
+    props.info.description.length > 25
+      ? `${props.info.description.substring(0, 25)}...`
+      : props.info.description;
 
   let handleDelete = async (id) => {
     try {
@@ -35,10 +45,14 @@ export const StockItem = (props) => {
           <td>{props.info.name}</td>
           <td>{description}</td>
           <td>
-            <Link to={`/edit/${props.info.stock_id}`}><button>Edit</button></Link>
-            <button onClick={() => handleDelete(props.info.stock_id)}>
-              Delete
-            </button>
+            <Link to={`/edit/${props.info.stock_id}`}>
+              <Button>
+                <FontAwesomeIcon icon={faEdit} />
+              </Button>
+            </Link>
+            <Button onClick={() => handleDelete(props.info.stock_id)}>
+              <FontAwesomeIcon icon={faTrash}/>
+            </Button>
           </td>
         </tr>
       )}
