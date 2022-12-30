@@ -1,33 +1,33 @@
-import { Link, Outlet, Route, Routes } from 'react-router-dom';
-import { AddStock } from './stock/AddStock';
-import { DisplayStock } from './stock/DisplayStock';
-import styled from 'styled-components';
-import './reset.css'
+import { Link, NavLink, Outlet, Route, Routes } from "react-router-dom";
+import { AddStock } from "./stock/AddStock";
+import { DisplayStock } from "./stock/DisplayStock";
+import styled from "styled-components";
+import "./reset.css";
 const Title = styled.h1`
   font-size: 1.5em;
   text-align: center;
   margin: 20px 0;
-`
+`;
 
 const Nav = styled.nav`
   display: flex;
   justify-content: center;
   align-items: center;
-`
-const Li = styled.li`
+`;
+const StyledNavLink = styled(NavLink)`
   padding: 10px;
   margin: 0 10px;
-  :hover{
+  :hover {
     background-color: white;
     color: black;
   }
-`
+`;
 
 export default function App() {
   return (
     <div className="App">
       <Title>Neil Garners 2023 Stock List!</Title>
-            {/* Routes nest inside one another. Nested route paths build upon
+      {/* Routes nest inside one another. Nested route paths build upon
             parent route paths, and nested route elements render inside
             parent route elements. See the note about <Outlet> below. */}
       <Routes>
@@ -44,22 +44,18 @@ export default function App() {
   );
 }
 
-
 function Layout() {
   return (
     <div>
       {/* A "layout route" is a good place to put markup you want to
           share across all the pages on your site, like navigation. */}
       <Nav>
-        <Li>
-        <Link to={'/'}>Home</Link>
-        </Li>
-        <Li>
-        <Link to={'/add'}>Add New</Link>
-        </Li>
+        <StyledNavLink to={"/"}>Home</StyledNavLink>
+
+        <StyledNavLink to={"/add"}>Add New</StyledNavLink>
       </Nav>
 
-      <hr/>
+      <hr />
 
       {/* An <Outlet> renders whatever child route is currently active,
           so you can think about this <Outlet> as a placeholder for
