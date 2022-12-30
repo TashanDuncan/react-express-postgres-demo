@@ -15,6 +15,9 @@ const Nav = styled.nav`
   display: flex;
   justify-content: center;
   align-items: center;
+  .active {
+    border-bottom: 1px white solid;
+  }
 `;
 const StyledNavLink = styled(NavLink)`
   padding: 10px;
