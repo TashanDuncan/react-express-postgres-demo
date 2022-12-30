@@ -12,8 +12,8 @@ export const AddStock = () => {
       let res = await fetch("http://localhost:3001/add", {
         method: "POST",
         headers: {
-          'Accept': 'application/json',
-          'Content-type': 'application/json',
+          Accept: "application/json",
+          "Content-type": "application/json",
         },
         body: JSON.stringify({
           name: name,
@@ -34,10 +34,10 @@ export const AddStock = () => {
   };
   return (
     <>
-      <Link to="/">Back</Link>
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Name:</label>
         <input
+          required
           id="name"
           name="name"
           value={name}
@@ -53,7 +53,12 @@ export const AddStock = () => {
           cols={33}
           onChange={(e) => setDesc(e.target.value)}
         ></textarea>
-        <button type="submit">Submit Stock</button>
+        <div>
+          {" "}
+          <button type="submit">Submit Stock</button>
+          <Link to="/">Back</Link>
+        </div>
+
         <div className="message">{message ? <p>{message}</p> : null}</div>
       </form>
     </>
