@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 export const StockItem = (props) => {
   const [isActive, setIsActive] = useState<boolean>(true);
+  const description = props.info.description.length > 25 ? `${props.info.description.substring(0,25)}...` : props.info.description
 
   let handleDelete = async (id) => {
     try {
@@ -32,9 +33,8 @@ export const StockItem = (props) => {
         <tr>
           <td>{props.info.stock_id}</td>
           <td>{props.info.name}</td>
-          <td>{props.info.description}</td>
+          <td>{description}</td>
           <td>
-            {" "}
             <Link to={`/edit/${props.info.stock_id}`}><button>Edit</button></Link>
             <button onClick={() => handleDelete(props.info.stock_id)}>
               Delete
