@@ -7,3 +7,8 @@
   max-width: 750px;
   margin: auto;
 }
+
+hr{
+  margin-top: 20px;
+  border: 1px solid white;
+}
