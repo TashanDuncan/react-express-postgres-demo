@@ -31,7 +31,7 @@ app.get('/stock', (req, res) => {
 
 app.get('/stock/:_id', (req, res) => {
   const id = req.params._id;
-  pool.query(`SELECT * FROM demo.stock WHERE stock_id = '${id}'`, (error, results) => {
+  pool.query(`SELECT * FROM demo.stock WHERE stock_id = '${id}';`, (error, results) => {
     if (error) {
       throw error
     }
@@ -41,7 +41,10 @@ app.get('/stock/:_id', (req, res) => {
 
 app.put('/stock/:_id', (req, res) => {
   const id = req.params._id;
-  pool.query(`SELECT * FROM demo.stock WHERE stock_id = '${id}'`, (error, results) => {
+  const {name, description} = req.body
+  pool.query(`UPDATE demo.stock 
+  SET name = '${name}', description = '${description}'
+  WHERE stock_id = '${id}';`, (error, results) => {
     if (error) {
       throw error
     }

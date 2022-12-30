@@ -3,7 +3,7 @@ import { Form, Link, useParams } from "react-router-dom";
 import * as Styled from "./Stock.styles";
 
 export const EditStock = () => {
-  let {stockId} = useParams()
+  let { stockId } = useParams();
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const [error, setError] = useState<any>();
   const [name, setName] = useState<string>("");
@@ -15,9 +15,13 @@ export const EditStock = () => {
       .then((res) => res.json())
       .then(
         (result) => {
-          console.log(result)
-          setName(result[0].name);
-          setDesc(result[0].description);
+          if (result.length === 0) {
+            setError(new Error("Stock ID does not exist"));
+          } else {
+            setName(result[0].name);
+            setDesc(result[0].description);
+            setIsLoaded(true);
+          }
         },
         (error) => {
           setIsLoaded(true);
@@ -25,7 +29,7 @@ export const EditStock = () => {
         }
       );
   }, []);
-  
+
   let handleUpdate = async (e) => {
     e.preventDefault();
     try {
@@ -42,7 +46,7 @@ export const EditStock = () => {
       });
       let resJson = await res.json();
       if (res.status === 200) {
-        setMessage("Stock Added successfully");
+        setMessage("Stock Updated successfully");
       } else {
         setMessage("Some error occured");
       }
@@ -50,43 +54,49 @@ export const EditStock = () => {
       console.log(err);
     }
   };
-  return (
-    <>
-    <Styled.SubTitle>Stock {stockId}</Styled.SubTitle>
-      <Styled.Form onSubmit={handleUpdate}>
-        <div>
-        <label htmlFor="name">Name:</label>
-        <input
-          required
-          id="name"
-          name="name"
-          value={name}
-          type="text"
-          placeholder="Name..."
-          onChange={(e) => setName(e.target.value)}
-        ></input>
-        </div>
-        <div>
-        <label htmlFor="description">Description:</label>
-        <textarea
-          id="description"
-          name="description"
-          value={desc}
-          rows={2}
-          cols={33}
-          wrap={'hard'}
-          placeholder="Description..."
-          onChange={(e) => setDesc(e.target.value)}
-        ></textarea>
-        </div>
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  } else if (!isLoaded) {
+    return <div>Loading...</div>;
+  } else {
+    return (
+      <>
+        <Styled.SubTitle>Stock {stockId}</Styled.SubTitle>
+        <Styled.Form onSubmit={handleUpdate}>
+          <div>
+            <label htmlFor="name">Name:</label>
+            <input
+              required
+              id="name"
+              name="name"
+              value={name}
+              type="text"
+              placeholder="Name..."
+              onChange={(e) => setName(e.target.value)}
+            ></input>
+          </div>
+          <div>
+            <label htmlFor="description">Description:</label>
+            <textarea
+              id="description"
+              name="description"
+              value={desc}
+              rows={2}
+              cols={33}
+              placeholder="Description..."
+              onChange={(e) => setDesc(e.target.value)}
+            ></textarea>
+          </div>
 
-
-        <div>
-          <Styled.Button type="submit">Update Stock</Styled.Button>
-          <Link to="/"><Styled.Button>Back</Styled.Button></Link>
-        </div>
-        <div className="message">{message ? <p>{message}</p> : null}</div>
-      </Styled.Form>
-    </>
-  );
+          <div>
+            <Styled.Button type="submit">Update Stock</Styled.Button>
+            <Link to="/">
+              <Styled.Button>Back</Styled.Button>
+            </Link>
+          </div>
+          <div className="message">{message ? <p>{message}</p> : null}</div>
+        </Styled.Form>
+      </>
+    );
+  }
 };
