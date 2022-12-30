@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export const StockItem = (props) => {
   const [isActive, setIsActive] = useState<boolean>(true);
@@ -34,7 +35,7 @@ export const StockItem = (props) => {
           <td>{props.info.description}</td>
           <td>
             {" "}
-            <button>Edit</button>
+            <Link to={`/edit/${props.info.stock_id}`}><button>Edit</button></Link>
             <button onClick={() => handleDelete(props.info.stock_id)}>
               Delete
             </button>

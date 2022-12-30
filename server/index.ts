@@ -29,9 +29,28 @@ app.get('/stock', (req, res) => {
   })
 });
 
+app.get('/stock/:_id', (req, res) => {
+  const id = req.params._id;
+  pool.query(`SELECT * FROM demo.stock WHERE stock_id = '${id}'`, (error, results) => {
+    if (error) {
+      throw error
+    }
+    res.status(200).json(results.rows)
+  })
+});
+
+app.put('/stock/:_id', (req, res) => {
+  const id = req.params._id;
+  pool.query(`SELECT * FROM demo.stock WHERE stock_id = '${id}'`, (error, results) => {
+    if (error) {
+      throw error
+    }
+    res.status(200).json(results.rows)
+  })
+});
+
 app.post('/add', (req, res) => {
   let { name, description } = req.body;
-console.log(req)
   pool.query(`INSERT INTO demo.stock (name, description) VALUES ('${name}', '${description}');`, (error, results) => {
     if (error) {
       throw error

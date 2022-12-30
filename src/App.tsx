@@ -4,6 +4,7 @@ import { DisplayStock } from "./stock/DisplayStock";
 import styled from "styled-components";
 import "./reset.css";
 import "./styles.css";
+import { EditStock } from "./stock/EditStock";
 const Title = styled.h1`
   font-size: 1.5em;
   text-align: center;
@@ -35,6 +36,7 @@ export default function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<DisplayStock />} />
           <Route path="add" element={<AddStock />} />
+          <Route path="edit/:stockId" element={<EditStock />} />
           {/* Using path="*"" means "match anything", so this route
                 acts like a catch-all for URLs that we don't have explicit
                 routes for. */}

@@ -16,6 +16,7 @@ input[type=text],textarea {
   padding:10px;
   margin:10px 5px;
   border: 1px solid white;
+  word-break: break-all;
   ::placeholder{
   color: grey;
 }
