@@ -3,6 +3,7 @@ import { AddStock } from "./stock/AddStock";
 import { DisplayStock } from "./stock/DisplayStock";
 import styled from "styled-components";
 import "./reset.css";
+import "./styles.css";
 const Title = styled.h1`
   font-size: 1.5em;
   text-align: center;

@@ -1,0 +1,9 @@
+*{
+  background-color: black;
+  color: white;
+}
+.App {
+  font-family: sans-serif;
+  max-width: 750px;
+  margin: auto;
+}
