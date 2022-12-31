@@ -34,37 +34,38 @@ export const AddStock = () => {
   };
   return (
     <>
-    <Styled.SubTitle>Add New Stock</Styled.SubTitle>
+      <Styled.SubTitle>Add New Stock</Styled.SubTitle>
       <Styled.Form onSubmit={handleSubmit}>
         <div>
-        <label htmlFor="name">Name:</label>
-        <input
-          required
-          id="name"
-          name="name"
-          value={name}
-          type="text"
-          placeholder="Name..."
-          onChange={(e) => setName(e.target.value)}
-        ></input>
+          <label htmlFor="name">Name:</label>
+          <input
+            required
+            id="name"
+            name="name"
+            value={name}
+            type="text"
+            placeholder="Name..."
+            onChange={(e) => setName(e.target.value)}
+          ></input>
         </div>
         <div>
-        <label htmlFor="description">Description:</label>
-        <textarea
-          id="description"
-          name="description"
-          value={desc}
-          rows={2}
-          cols={33}
-          placeholder="Description..."
-          onChange={(e) => setDesc(e.target.value)}
-        ></textarea>
+          <label htmlFor="description">Description:</label>
+          <textarea
+            id="description"
+            name="description"
+            value={desc}
+            rows={2}
+            cols={33}
+            placeholder="Description..."
+            onChange={(e) => setDesc(e.target.value)}
+          ></textarea>
         </div>
-
 
         <div>
           <Styled.Button type="submit">Submit Stock</Styled.Button>
-          <Link to="/"><Styled.Button>Back</Styled.Button></Link>
+          <Link to="/">
+            <Styled.Button>Back</Styled.Button>
+          </Link>
         </div>
         <div className="message">{message ? <p>{message}</p> : null}</div>
       </Styled.Form>
