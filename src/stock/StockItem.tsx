@@ -11,8 +11,8 @@ const Button = styled.button`
 export const StockItem = (props) => {
   const [isActive, setIsActive] = useState<boolean>(true);
   const description =
-    props.info.description.length > 25
-      ? `${props.info.description.substring(0, 25)}...`
+    props.info.description.length > 50
+      ? `${props.info.description.substring(0, 50)}...`
       : props.info.description;
 
   let handleDelete = async (id) => {
