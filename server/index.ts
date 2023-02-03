@@ -31,7 +31,7 @@ app.get('/stock', (req, res) => {
 
 app.get('/stock/:_id', (req, res) => {
   const id = req.params._id;
-  pool.query(`SELECT * FROM demo.stock WHERE stock_id = '${id}';`, (error, results) => {
+  pool.query('SELECT * FROM demo.stock WHERE stock_id = $1;',[id], (error, results) => {
     if (error) {
       throw error
     }
@@ -43,8 +43,8 @@ app.put('/stock/:_id', (req, res) => {
   const id = req.params._id;
   const {name, description} = req.body
   pool.query(`UPDATE demo.stock 
-  SET name = '${name}', description = '${description}'
-  WHERE stock_id = '${id}';`, (error, results) => {
+  SET name = $1, description = $2
+  WHERE stock_id = $3;`,[name,description,id], (error, results) => {
     if (error) {
       throw error
     }
@@ -54,18 +54,18 @@ app.put('/stock/:_id', (req, res) => {
 
 app.post('/add', (req, res) => {
   let { name, description } = req.body;
-  pool.query(`INSERT INTO demo.stock (name, description) VALUES ('${name}', '${description}');`, (error, results) => {
+  pool.query(`INSERT INTO demo.stock (name, description) VALUES ($1, $2);`,[name,description], (error, results) => {
     if (error) {
       throw error
     }
-    res.status(200).json(results.rows)
+    res.status(201).json(results.rows)
   })
 });
 
 app.delete('/remove', (req, res) => {
   console.log(req.body)
   let { id } = req.body;
-  pool.query(`DELETE FROM demo.stock WHERE stock_id ='${id}';`, (error, results) => {
+  pool.query(`DELETE FROM demo.stock WHERE stock_id =$1;`, [id], (error, results) => {
     if (error) {
       throw error
     }

@@ -21,7 +21,7 @@ export const AddStock = () => {
           description: desc,
         }),
       });
-      if (res.status === 200) {
+      if (res.status === 201) {
         setName("");
         setDesc("");
         setMessage("Stock Added successfully");
