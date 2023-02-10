@@ -2,7 +2,6 @@ import express from 'express';
 import * as pg from 'pg'
 import cors from 'cors';
 const { Pool } = pg.default
-
 const app = express();
 app.use(cors())
 app.use(express.json());
@@ -12,7 +11,6 @@ const pool = new Pool({
   user: 'Tay.Duncan',
   host: 'localhost',
   database: 'demo',
-  password: 'password',
   port: 5432,
 })
 
